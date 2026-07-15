@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { 
   FaArrowRight, 
@@ -6,14 +6,14 @@ import {
   FaCheckCircle, 
   FaTshirt,
   FaStar,
-  FaUsers
+  FaUsers,
+  FaSearchPlus
 } from 'react-icons/fa';
+import Typed from 'typed.js';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [textIndex, setTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [typedElement, setTypedElement] = useState(null);
 
   const slides = [
     {
@@ -35,16 +35,28 @@ const Hero = () => {
       subtitle: "Be the first to wear the latest"
     }
   ];
+  useEffect(() => {
+    const options = {
+      strings: ['Elegance', 'Comfort', 'Style', 'Class', 'Perfection'],
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000,
+      startDelay: 500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+      className: 'typed-cursor',
+      smartBackspace: true,
+    };
 
-  const words = [
-    "Elegance",
-    "Comfort",
-    "Style",
-    "Class",
-    "Perfection"
-  ];
+    const typed = new Typed('#typed-text', options);
+    setTypedElement(typed);
 
-  // Auto slide
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -52,72 +64,29 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Typing animation
-  useEffect(() => {
-    const currentWord = words[textIndex % words.length];
-    
-    if (!isDeleting) {
-      if (displayText.length < currentWord.length) {
-        const timer = setTimeout(() => {
-          setDisplayText(currentWord.slice(0, displayText.length + 1));
-        }, 150);
-        return () => clearTimeout(timer);
-      } else {
-        const timer = setTimeout(() => {
-          setIsDeleting(true);
-        }, 2000);
-        return () => clearTimeout(timer);
-      }
-    } else {
-      if (displayText.length > 0) {
-        const timer = setTimeout(() => {
-          setDisplayText(currentWord.slice(0, displayText.length - 1));
-        }, 100);
-        return () => clearTimeout(timer);
-      } else {
-        setIsDeleting(false);
-        setTextIndex((prev) => prev + 1);
-      }
-    }
-  }, [displayText, isDeleting, textIndex, words]);
-
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#200101]">
-      {/* Background Pattern */}
+    <section className="relative  flex items-center overflow-hidden ">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-600/30 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-amber-600/20 to-transparent"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-16 lg:py-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Content */}
+         
           <div className="space-y-6">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 text-amber-600 px-4 py-2 rounded-full text-sm font-medium border border-white/10 animate-fade-in-up">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-600 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-600"></span>
-              </span>
-              New Collection 2026
-            </div>
-
-           
+            
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight animate-fade-in-up">
               Elevate Your
               <span className="block text-amber-600 mt-2">
-                {displayText}
-                <span className="animate-blink text-amber-600">|</span>
+                <span id="typed-text"></span>
               </span>
             </h1>
-
             <p className="text-base sm:text-lg text-white/70 max-w-lg leading-relaxed animate-fade-in-up animation-delay-200">
               Discover premium fashion that blends timeless elegance with modern comfort. 
               From classic Panjabis to contemporary essentials.
             </p>
 
-     
             <div className="grid grid-cols-2 gap-4 animate-fade-in-up animation-delay-400">
               <div className="flex items-center gap-2 text-amber-600">
                 <FaCheckCircle className="text-amber-600" />
@@ -137,7 +106,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-fade-in-up animation-delay-600">
               <Link 
                 to="/products" 
@@ -155,7 +123,6 @@ const Hero = () => {
               </Link>
             </div>
 
-           
             <div className="flex gap-8 pt-4 border-t border-white/10 animate-fade-in-up animation-delay-800">
               <div className="flex items-center gap-3">
                 <FaTshirt className="text-amber-600 text-xl" />
@@ -181,21 +148,9 @@ const Hero = () => {
             </div>
           </div>
 
-      
           <div className="relative flex justify-center lg:justify-end animate-fade-in-up animation-delay-300">
             <div className="relative w-full max-w-md lg:max-w-lg group">
-              <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-amber-500/10 to-amber-700/10 shadow-2xl">
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-amber-600 rounded-tl-3xl"></div>
-                
-                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-amber-600 rounded-tr-3xl"></div>
-                 
-                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-amber-600 rounded-bl-3xl"></div>
-               
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-amber-600 rounded-br-3xl"></div>
-                </div>
-
+              <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-amber-500/10 to-amber-700/10 shadow-2xl shadow-amber-600/10 group-hover:shadow-amber-600/30 transition-shadow duration-500">
                 {slides.map((slide, index) => (
                   <div
                     key={slide.id}
@@ -208,17 +163,36 @@ const Hero = () => {
                     <img 
                       src={slide.image} 
                       alt={slide.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                   
-                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                      <h3 className="text-white font-semibold text-lg">{slide.title}</h3>
+                    
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="bg-amber-600 text-white p-4 rounded-full shadow-2xl transform group-hover:scale-110 transition-transform duration-500">
+                        <FaSearchPlus className="text-2xl" />
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                      <h3 className="text-white font-semibold text-lg group-hover:translate-y-0 translate-y-0 transition-all duration-500">
+                        {slide.title}
+                      </h3>
                       <p className="text-white/70 text-sm">{slide.subtitle}</p>
                     </div>
                   </div>
                 ))}
 
-             
+              
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                 
+                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-amber-600 rounded-tl-2xl"></div>          
+                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-amber-600 rounded-tr-2xl"></div>
+                  <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-amber-600 rounded-bl-2xl"></div>
+                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-amber-600 rounded-br-2xl"></div>
+                </div>
+
+           
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                   {slides.map((_, index) => (
                     <button
@@ -237,6 +211,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+   
     </section>
   );
 };

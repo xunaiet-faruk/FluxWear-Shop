@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Link } from 'react-router';
 import { FaStar, FaHeart, FaShoppingCart, FaEye } from 'react-icons/fa';
 
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const productImage = product.images && product.images.length > 0 
+    ? product.images[0] 
+    : product.image || 'https://via.placeholder.com/400';
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }).map((_, index) => (
@@ -23,7 +26,7 @@ const ProductCard = ({ product }) => {
     >
       <Link to={`/product/${product.id}`} className="block relative aspect-square overflow-hidden">
         <img 
-          src={product.image} 
+          src={productImage} 
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
@@ -45,7 +48,7 @@ const ProductCard = ({ product }) => {
         </button>
 
         <div className={`absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <button className="bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-transform duration-300">
+          <button className="cursor-pointer text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-transform duration-300">
             <FaEye className="text-lg" />
           </button>
         </div>

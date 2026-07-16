@@ -91,7 +91,7 @@ const ProductFilter = ({
       <div className="hidden sm:flex items-center gap-2 mt-4 flex-wrap">
         <button
           onClick={() => onCategoryChange('all')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
             selectedCategory === 'all'
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
               : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
@@ -103,7 +103,7 @@ const ProductFilter = ({
           <button
             key={category}
             onClick={() => onCategoryChange(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
               selectedCategory === category
                 ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
                 : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'

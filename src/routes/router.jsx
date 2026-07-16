@@ -1,35 +1,37 @@
-import { createBrowserRouter } from "react-router";
-import Mainlayouts from "../layouts/Mainlayouts";
-import Home from "../pages/Home";
-import ProductsPages from "../pages/products/ProductsPages";
+import { createBrowserRouter } from 'react-router';
+import Home from '../pages/Home';
+import Products from '../pages/products/ProductsPages';
 
+import NotFound from '../pages/NotFound';
+import MainLayout from '../layouts/Mainlayouts';
+import ProductDetails from '../components/ui/products/ProductDetails';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Mainlayouts,
+    path: '/',
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        Component: Home,
+        element: <Home />,
       },
       {
-        path: "products",
-        Component: ProductsPages,
+        path: 'products',
+        element: <Products />,
       },
       {
-        path: "products/:id",
-        Component: "ProductDetails",
+        path: 'product/:id',
+        element: <ProductDetails />,
       },
       {
-        path: "cart",
-        Component: "Cart",
+        path: 'cart',
+        element: "<Cart />",
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
-  },
-  {
-    path: "*",
-    Component: "NotFound",
   },
 ]);
 

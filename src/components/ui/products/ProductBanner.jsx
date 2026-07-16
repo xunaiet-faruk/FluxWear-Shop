@@ -56,11 +56,8 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
 
   return (
     <section className="relative mb-8 rounded-2xl border-2 border-dashed border-[#C99A3D]/30 bg-[#150000] p-2.5 sm:p-4">
-
-      {/* Main split: image panel + content panel */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-4">
 
-        {/* Image panel */}
         <div className="relative lg:col-span-3 h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] rounded-xl overflow-hidden">
           {banners.map((banner, index) => (
             <img
@@ -73,8 +70,6 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
             />
           ))}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
-
-          {/* Hanging fabric tag */}
           <div className="absolute top-4 left-4 z-10 flex items-start">
             <div className="relative bg-[#F3EAD8] text-[#150000] rounded-md rounded-tl-none pl-4 pr-4 py-1.5 shadow-lg">
               <span className="absolute -top-2 left-2 w-3.5 h-3.5 rounded-full border-2 border-[#C99A3D] bg-[#150000]" />
@@ -84,7 +79,6 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
             </div>
           </div>
 
-          {/* Thread-style pagination */}
           <div className="absolute bottom-3 left-4 z-10 flex gap-1.5">
             {banners.map((_, index) => (
               <button
@@ -101,7 +95,6 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
           </div>
         </div>
 
-        {/* Content panel */}
         <div className="relative lg:col-span-2 rounded-xl bg-gradient-to-b from-[#2a0404] to-[#200101] p-5 sm:p-7 flex flex-col justify-center overflow-hidden">
           <span className="hidden lg:block absolute right-2 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] tracking-[0.35em] uppercase text-[#C99A3D]/50 whitespace-nowrap">
             Est. Atelier
@@ -116,7 +109,7 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
 
           <Link
             to="/products"
-            className="group inline-flex w-fit items-center gap-2 bg-[#C99A3D] hover:bg-[#E4C077] text-[#150000] font-semibold px-5 py-2.5 rounded-full transition-colors duration-300 text-sm sm:text-base"
+            className="group inline-flex w-fit items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-full  text-sm sm:text-base"
           >
             <span>Shop Now</span>
             <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -124,7 +117,6 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
         </div>
       </div>
 
-      {/* Stitched divider */}
       <div className="my-3 sm:my-4 border-t border-dashed border-[#C99A3D]/25" />
 
       {/* Features + stats strip */}

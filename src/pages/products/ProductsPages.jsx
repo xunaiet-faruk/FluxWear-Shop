@@ -42,11 +42,11 @@ const Products = () => {
   }, [selectedCategory, sortOption]);
 
   return (
-    <div className="bg-[#200101] py-8">
+    <div className="bg-[#200101] ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ProductBanner categoryCount={productsData.length} />
         
-        <div className="mt-8">
+        <div className="my-32">
           <ProductFilter
             categories={categories}
             selectedCategory={selectedCategory}

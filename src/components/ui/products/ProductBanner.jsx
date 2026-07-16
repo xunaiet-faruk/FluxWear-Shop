@@ -11,7 +11,7 @@ import {
   FaClock
 } from 'react-icons/fa';
 
-const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
+const ProductBanner = ({  categoryCount }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const banners = [
@@ -55,7 +55,7 @@ const ProductBanner = ({ title, subtitle, backgroundImage, categoryCount }) => {
   const active = banners[currentSlide];
 
   return (
-    <section className="relative mb-8 rounded-2xl border-2 border-dashed border-[#C99A3D]/30 bg-[#150000] p-2.5 sm:p-4">
+    <section className="relative mb-8  rounded-2xl border-2 border-dashed border-[#C99A3D]/30 bg-[#150000] p-2.5 sm:p-4">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-4">
 
         <div className="relative lg:col-span-3 h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] rounded-xl overflow-hidden">

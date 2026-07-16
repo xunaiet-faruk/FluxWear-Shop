@@ -2,3 +2,21 @@
 body{
     background-color: #1a0101;
 }
+
+.marquee-track {
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}

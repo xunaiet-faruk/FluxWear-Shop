@@ -83,7 +83,7 @@ const FeaturedCategories = () => {
           {filteredData.map((category, index) => (
             <Link
               key={category.id}
-              to={`/category/${category.name.toLowerCase()}`}
+              to={"/Products"}
               className="category-card group relative block"
               data-id={category.id}
               onMouseEnter={() => setHoveredId(category.id)}
@@ -159,7 +159,7 @@ const FeaturedCategories = () => {
 
         <div className="text-center mt-12">
           <Link
-            to="/categories"
+            to="/Products"
             className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-600/30 hover:scale-105 transform"
           >
             <span>View All Categories</span>

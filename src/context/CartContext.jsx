@@ -1,45 +1,60 @@
-import React, { createContext, useState, useEffect } from 'react';
+import  { createContext, useState, useEffect } from 'react';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('cart');
     if (saved) {
-      setItems(JSON.parse(saved));
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setItems(parsed);
+        }
+      } catch (error) {
+        console.error('Error parsing cart data:', error);
+      }
     }
+    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
+    if (!isLoaded) return;
     localStorage.setItem('cart', JSON.stringify(items));
-  }, [items]);
+  }, [items, isLoaded]);
 
   const addToCart = (product) => {
-    const exists = items.find(item => item.id === product.id);
-    if (exists) {
-      setItems(items.map(item =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
-    } else {
-      setItems([...items, { ...product, quantity: 1 }]);
-    }
+    setItems(prevItems => {
+      const exists = prevItems.find(item => item.id === product.id);
+      if (exists) {
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
   };
 
   const removeFromCart = (id) => {
-    setItems(items.filter(item => item.id !== id));
+    setItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
   const updateQuantity = (id, quantity) => {
     if (quantity <= 0) {
       removeFromCart(id);
     } else {
-      setItems(items.map(item =>
-        item.id === id ? { ...item, quantity } : item
-      ));
+      setItems(prevItems =>
+        prevItems.map(item =>
+          item.id === id ? { ...item, quantity } : item
+        )
+      );
     }
   };
 

@@ -1,10 +1,9 @@
-import NotFound from "../../../pages/EmptyProducts";
-import ProductCard from "./ProductCard";
-
+import ProductCard from './ProductCard';
+import EmptyProducts from './EmptyProducts';
 
 const ProductGrid = ({ products }) => {
   if (!products || products.length === 0) {
-    return <NotFound />;
+    return <EmptyProducts />;
   }
 
   return (

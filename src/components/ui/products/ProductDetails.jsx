@@ -1,8 +1,10 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
-import { FaStar, FaShoppingCart, FaHeart, FaArrowLeft, FaMinus, FaPlus, FaCheck, FaSearchPlus } from 'react-icons/fa';
+import { FaStar, FaShoppingCart, FaArrowLeft, FaMinus, FaPlus, FaCheck, FaSearchPlus } from 'react-icons/fa';
+import toast, { Toaster } from 'react-hot-toast';
 import { productsData } from '../../../data/products';
 import { useCart } from '../../../hooks/usecard';
+import Loading from '../Loading';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -12,7 +14,6 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [mainImage, setMainImage] = useState('');
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -52,7 +53,20 @@ const ProductDetails = () => {
         color: selectedColor || 'White'
       });
       setAddedToCart(true);
-      setTimeout(() => setAddedToCart(false), 3000);
+      
+      toast.success(`✨ ${product.name} added to cart!`, {
+        style: {
+          background: '#1a0101',
+          color: '#fff',
+          border: '1px solid rgba(251, 191, 36, 0.3)',
+          padding: '16px',
+          borderRadius: '12px',
+        },
+        icon: '🛒',
+        duration: 3000,
+      });
+      
+      setTimeout(() => setAddedToCart(false), 2000);
     }
   };
 
@@ -64,11 +78,7 @@ const ProductDetails = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-[#200101] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
-      </div>
-    );
+    return <Loading fullScreen text="Loading product details..." />;
   }
 
   if (!product) {
@@ -90,6 +100,13 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen bg-[#200101] py-8">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
+      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/products" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors duration-300 mb-6">
           <FaArrowLeft />
@@ -98,7 +115,6 @@ const ProductDetails = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            {/* Main Image with Zoom */}
             <div 
               className="relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 group"
               onMouseEnter={() => setIsZoomed(true)}
@@ -115,21 +131,16 @@ const ProductDetails = () => {
                     transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`
                   }}
                 />
-                
-                {/* Zoom Overlay */}
                 {isZoomed && (
                   <div className="absolute inset-0 border-2 border-amber-600/50 pointer-events-none"></div>
                 )}
               </div>
-              
-              {/* Zoom Indicator */}
               <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <FaSearchPlus className="text-amber-600" />
                 <span>Hover to Zoom</span>
               </div>
             </div>
             
-            {/* Thumbnails */}
             {productImages.length > 1 && (
               <div className="grid grid-cols-4 gap-3 mt-4">
                 {productImages.map((img, index) => (
@@ -242,7 +253,7 @@ const ProductDetails = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
-                className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`flex-1 cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   addedToCart
                     ? 'bg-green-600 text-white'
                     : product.inStock
@@ -259,17 +270,6 @@ const ProductDetails = () => {
                     <FaShoppingCart /> Add to Cart
                   </>
                 )}
-              </button>
-
-              <button
-                onClick={() => setIsWishlisted(!isWishlisted)}
-                className={`p-3 rounded-full border transition-all duration-300 hover:scale-110 ${
-                  isWishlisted
-                    ? 'bg-red-500/20 border-red-500/50 text-red-500'
-                    : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10'
-                }`}
-              >
-                <FaHeart />
               </button>
             </div>
           </div>

@@ -8,15 +8,15 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ## 🌐 Live Demo
 
-🔗 **Live Site:** https://your-live-link.vercel.app
+🔗 **Live Site:** [Your Live Demo Link](https://your-project.vercel.app)
 
 ## 💻 GitHub Repository
 
-🔗 **Client Repository:** https://github.com/your-username/your-repository
+🔗 **Client Repository:** [https://github.com/xunaiet-faruk/FluxWear-Shop](https://github.com/xunaiet-faruk/FluxWear-Shop)
 
 ---
 
-# ✨ Features
+## ✨ Features
 
 - 🏠 Beautiful Home Page
 - 🛍️ Product Listing
@@ -38,7 +38,7 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# 📄 Pages
+## 📄 Pages
 
 - Home
 - Products
@@ -48,7 +48,7 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# 🧩 Home Page Sections
+## 🧩 Home Page Sections
 
 - Hero Banner
 - Featured Categories
@@ -59,7 +59,7 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# 🛍️ Product Features
+## 🛍️ Product Features
 
 - View All Products
 - Filter Products by Category
@@ -74,7 +74,7 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# 🛒 Shopping Cart Features
+## 🛒 Shopping Cart Features
 
 - Add Product
 - Remove Product
@@ -86,7 +86,7 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# ⚙️ Tech Stack
+## ⚙️ Tech Stack
 
 ### Frontend
 
@@ -113,185 +113,4 @@ A modern, responsive fashion e-commerce frontend built with **React + Vite**. Th
 
 ---
 
-# 📁 Folder Structure
-
-```
-src
-│
-├── assets
-├── components
-│   ├── Navbar
-│   ├── Footer
-│   ├── ProductCard
-│   ├── Loading
-│   ├── EmptyState
-│   └── ...
-│
-├── context
-│   └── CartContext
-│
-├── data
-│   └── products.js
-│
-├── hooks
-│
-├── layouts
-│
-├── pages
-│   ├── Home
-│   ├── Products
-│   ├── ProductDetails
-│   ├── Cart
-│   └── NotFound
-│
-├── routes
-├── utils
-└── App.jsx
-```
-
----
-
-# 🚀 Getting Started
-
-## Clone the repository
-
-```bash
-git clone https://github.com/xunaiet-faruk/FluxWear-Shop
-```
-
----
-
-## Navigate to the project
-
-```bash
-cd your-project-folder
-```
-
----
-
-## Install dependencies
-
-```bash
-npm install
-```
-
----
-
-## Start development server
-
-```bash
-npm run dev
-```
-
----
-
-## Build Project
-
-```bash
-npm run build
-```
-
----
-
-# 📱 Responsive Design
-
-The application is fully responsive and optimized for:
-
-- 📱 Mobile
-- 📲 Tablet
-- 💻 Laptop
-- 🖥️ Desktop
-
----
-
-# 🎯 Project Highlights
-
-- Clean Component Architecture
-- Reusable Components
-- Responsive UI
-- Modern Design
-- Context API State Management
-- Client-side Routing
-- Local Dummy Data
-- Loading & Empty States
-- Toast Notifications
-- Shopping Cart Functionality
-
----
-
-# 📸 Screenshots
-
-## Home Page
-
-> Add your screenshot here
-
----
-
-## Products Page
-
-> Add your screenshot here
-
----
-
-## Product Details
-
-> Add your screenshot here
-
----
-
-## Shopping Cart
-
-> Add your screenshot here
-
----
-
-# 📦 Dummy Data
-
-This project uses **local dummy product data** (10–12 products).
-
-Each product includes:
-
-- ID
-- Name
-- Category
-- Price
-- Image
-- Rating
-- Colors
-- Sizes
-- Stock Status
-- Description
-
-No backend or external database is used.
-
----
-
-# 📌 Future Improvements
-
-- ❤️ Wishlist
-- 🌙 Dark Mode
-- 💳 Checkout Page
-- 📦 Order Summary
-- ❤️ Favorite Products
-- Product Image Gallery
-
----
-
-# 👨‍💻 Author
-
-**Junaiet Faruk**
-
-Frontend Developer
-
-GitHub: https://github.com/xunaiet-faruk
-
-Portfolio: https://junaiet-portfolio.vercel.app
-
-
----
-
-# ⭐ Support
-
-If you like this project, consider giving it a ⭐ on GitHub.
-
----
+## 📁 Folder Structure

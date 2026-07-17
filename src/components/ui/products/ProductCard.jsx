@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { FaStar, FaHeart, FaShoppingCart, FaEye } from 'react-icons/fa';
 
 const ProductCard = ({ product }) => {

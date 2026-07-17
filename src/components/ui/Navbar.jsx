@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.png';
 import { SlBasketLoaded } from 'react-icons/sl';
 import { useCart } from '../../hooks/usecard';
 import Card from './Mycard/Card';
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,15 +35,31 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-[#200101] shadow-xl px-4 sm:px-6 lg:px-8 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-20">
+        <div className="container mx-auto flex items-center justify-between h-16 lg:h-20">
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition-colors relative z-50 order-1"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <span className="text-white text-2xl font-light"></span>
+            ) : (
+              <>
+                <span className="w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span className="w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span className="w-6 h-0.5 bg-white transition-all duration-300"></span>
+              </>
+            )}
+          </button>
+
           <NavLink 
             to="/" 
-            className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-gray-900 hover:text-amber-600 transition-colors flex-shrink-0"
+            className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-gray-900 hover:text-amber-600 transition-colors flex-shrink-0 md:order-1 order-2 md:ml-0"
           >
             <img className='w-32' src={Logo} alt="FluxWear Logo" />
           </NavLink>
 
-          <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12 absolute left-1/2 transform -translate-x-1/2 order-2">
             <NavLink 
               to="/" 
               end
@@ -77,13 +92,12 @@ const Navbar = () => {
             >
               Products
             </NavLink>
-           
           </div>
 
-          <div className="hidden md:block flex-shrink-0">
+          <div className="flex items-center gap-2 order-3">
             <button 
               onClick={() => setIsCartOpen(true)}
-              className="relative cursor-pointer inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-full text-sm lg:text-base transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105"
+              className="hidden md:inline-flex relative cursor-pointer items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-full text-sm lg:text-base transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105"
             >
               <SlBasketLoaded />
               {totalItems > 0 && (
@@ -92,29 +106,19 @@ const Navbar = () => {
                 </span>
               )}
             </button>
+
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="md:hidden relative text-white hover:text-amber-600 transition-colors duration-300 p-2"
+            >
+              <SlBasketLoaded className="text-xl" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center animate-pulse">
+                  {totalItems}
+                </span>
+              )}
+            </button>
           </div>
-
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition-colors relative z-50"
-            aria-label="Toggle menu"
-          >
-            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-          </button>
-
-          <button 
-            onClick={() => setIsCartOpen(true)}
-            className="md:hidden relative text-white hover:text-amber-600 transition-colors duration-300"
-          >
-            <SlBasketLoaded className="text-xl" />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center animate-pulse">
-                {totalItems}
-              </span>
-            )}
-          </button>
         </div>
 
         <div

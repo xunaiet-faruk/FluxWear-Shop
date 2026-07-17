@@ -97,7 +97,7 @@ const WhyChooseUs = () => {
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-amber-700 rounded-full filter blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Why <span className="text-amber-600">Choose Us</span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
   FaShoppingBag,
   FaArrowRight,
@@ -55,7 +55,7 @@ const ProductBanner = ({  categoryCount }) => {
   const active = banners[currentSlide];
 
   return (
-    <section className="relative mb-8  rounded-2xl border-2 border-dashed border-[#C99A3D]/30 bg-[#150000] p-2.5 sm:p-4">
+    <section className="relative   rounded-2xl border-2 border-dashed border-[#C99A3D]/30 bg-[#150000] p-2.5 sm:p-4">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-4">
 
         <div className="relative lg:col-span-3 h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] rounded-xl overflow-hidden">
@@ -107,13 +107,13 @@ const ProductBanner = ({  categoryCount }) => {
             {active.subtitle}
           </p>
 
-          <Link
-            to="/products"
-            className="group inline-flex w-fit items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-full  text-sm sm:text-base"
-          >
-            <span>Shop Now</span>
-            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+        <Link
+  to="/products"
+  className="group inline-flex w-fit items-center gap-1.5 sm:gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full text-[10px] sm:text-xs md:text-sm lg:text-base"
+>
+  <span>Shop Now</span>
+  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 text-[8px] sm:text-[10px] md:text-xs lg:text-sm" />
+</Link>
         </div>
       </div>
 
